@@ -2,6 +2,7 @@ import streamlit as st
 import joblib
 import requests
 import io
+import numpy as np
 
 st.set_page_config(page_title="Employee Attrition Prediction", layout="centered")
 
