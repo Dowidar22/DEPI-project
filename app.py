@@ -1,18 +1,23 @@
 import streamlit as st
 import joblib
-import numpy as np
+import requests
+import io
 
 st.set_page_config(page_title="Employee Attrition Prediction", layout="centered")
 
 st.title("Employee Attrition Prediction")
 st.write("Fill in the employee details to predict attrition.")
 
-# Load the model
+model_url = "https://github.com/ziad-samy/depi-project/raw/main/gb.pkl"
+
 try:
-    model = joblib.load("C:/Users/tabark/Desktop/DEPI_Proj/gb.pkl")
+    response = requests.get(model_url)
+    response.raise_for_status() 
+    model = joblib.load(io.BytesIO(response.content))
     st.success("✅ Model loaded successfully!")
 except Exception as e:
     st.error(f"❌ Error loading model: {e}")
+
 
 # Define feature inputs
 age = st.number_input("Age", min_value=18, max_value=65, value=30)
