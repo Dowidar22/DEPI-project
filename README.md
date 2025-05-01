@@ -1,45 +1,76 @@
-# Employee Attrition Prediction and Analysis
+# 🧠 Employee Attrition Prediction and Analysis
 
-This project analyzes and predicts employee attrition using the IBM HR Analytics dataset. It includes data preprocessing, exploratory analysis, machine learning modeling, and deployment through a Streamlit application.
+This project focuses on predicting employee attrition using the IBM HR Analytics dataset. The pipeline includes data preprocessing, exploratory analysis, handling class imbalance, model training (Random Forest), and deploying a prediction tool using Streamlit.
+
+---
 
 ## 📊 Dataset
 
-- Source: [Kaggle - IBM HR Analytics Attrition Dataset](https://www.kaggle.com/datasets/pavansubhasht/ibm-hr-analytics-attrition-dataset)
--  Features include: age, gender, job role, department, overtime, education, distance from home, monthly income, etc.
+- **Source**: [Kaggle - IBM HR Analytics Attrition Dataset](https://www.kaggle.com/datasets/pavansubhasht/ibm-hr-analytics-attrition-dataset)
+- **Features include**: employee age, job level, marital status, total working years, years at company, manager relationships, overtime, etc.
+
+---
 
 ## 🔍 Project Workflow
 
-1. **Data Cleaning & Encoding**
+### 1. Data Cleaning & Encoding
+- Categorical columns were label encoded.
+- Dropped uninformative or constant columns such as `EmployeeCount`, `StandardHours`, and `EmployeeNumber`.
 
-   - Replaced categorical values with numeric or one-hot encoded them.
-   - Dropped uninformative columns (e.g., EmployeeCount, StandardHours).
+### 2. Exploratory Data Analysis
+- Countplots and pie charts were used for categorical analysis.
+- Spearman correlation matrix was used to identify the most relevant features.
 
-2. **Exploratory Data Analysis**
+### 3. Handling Class Imbalance
+- Applied **SMOTE** to oversample the minority class (Attrition = Yes).
+- Ensured balanced training data for fair model performance.
 
-   - Countplots and pie charts for categorical variables.
-   - Correlation matrix using Spearman correlation.
+### 4. Feature Selection
+- Selected top 8 features with highest correlation to attrition:
+  - `Age`
+  - `JobLevel`
+  - `MaritalStatus`
+  - `OverTime`
+  - `TotalWorkingYears`
+  - `YearsAtCompany`
+  - `YearsInCurrentRole`
+  - `YearsWithCurrManager`
 
-3. **Handling Imbalance**
+### 5. Model Training & Evaluation
+- Trained and tested multiple models.
+- **Final model used**: `RandomForestClassifier`
+- Evaluated with:
+  - Confusion Matrix
+  - Classification Report
+  - Accuracy, Precision, Recall, F1-Score
 
-   - SMOTE was used to balance the target (Attrition).
+### 6. Deployment
+- Deployed the final model using a **Streamlit app**.
+- Users can input employee details and receive real-time attrition predictions.
 
-4. **Model Training & Evaluation**
+---
 
-   - Trained multiple models:
-     - Logistic Regression
-     - Decision Tree
-     - Random Forest
-     - Gradient Boosting
-   - Evaluated using:
-     - Confusion Matrix
-     - Classification Report
-     - Accuracy, Precision, Recall, F1 Score
+## 🖥️ Streamlit App Inputs
 
-5. **Deployment**
+The app accepts the following 8 inputs:
 
-   - Built a Streamlit dashboard to predict attrition based on user input.
+- Age
+- Job Level
+- Marital Status
+- OverTime
+- Total Working Years
+- Years At Company
+- Years In Current Role
+- Years With Current Manager
+
+---
 
 ## ✅ Results
 
-- Successfully predicted attrition with good performance using ensemble models.
-- Streamlit app visualizes inputs, predictions.
+- Achieved solid predictive performance using Random Forest.
+- The deployed Streamlit app provides an interactive and easy-to-use interface for HR professionals to assess attrition risk based on real-time employee inputs.
+
+---
+
+You can try the live version of this app on Streamlit Cloud:  
+👉 [Employee Attrition Prediction](https://employee-attrition-depi-project.streamlit.app/)
