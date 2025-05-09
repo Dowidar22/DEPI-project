@@ -1,4 +1,4 @@
-# 🧠 Employee Attrition Prediction and Analysis
+# Employee Attrition Prediction and Analysis
 
 This project focuses on predicting employee attrition using the IBM HR Analytics dataset. The pipeline includes data preprocessing, exploratory analysis, handling class imbalance, model training (Random Forest), and deploying a prediction tool using Streamlit.
 
